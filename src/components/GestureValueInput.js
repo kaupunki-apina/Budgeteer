@@ -7,11 +7,10 @@ import {
   View,
   Text,
 } from 'react-native';
+import global from '../style';
 
-import GestureValueInput from './components/GestureValueInput';
 
-
-export default class Home extends Component {
+export default class GestureValueInput extends Component {
   constructor(props) {
     super(props);
   }
@@ -19,7 +18,7 @@ export default class Home extends Component {
   render() {
     return (
       <View>
-        <GestureValueInput />
+        <Text>Gesture valueinput</Text>
       </View>
     );
   }
