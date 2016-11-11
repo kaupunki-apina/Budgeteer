@@ -10,7 +10,6 @@
     "react": "15.3.2",
     "react-native": "0.37.0",
     "react-native-extended-stylesheet": "^0.3.0",
-    "react-native-gesture-recognizers": "^0.2.3",
     "react-native-gesture-responder": "^0.1.1"
   },
   "jest": {
