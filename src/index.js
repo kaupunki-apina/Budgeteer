@@ -8,8 +8,8 @@ import {
   Text,
 } from 'react-native';
 
+import EStyleSheet from 'react-native-extended-stylesheet';
 import GestureValueInput from './components/GestureValueInput';
-
 
 export default class Home extends Component {
   constructor(props) {
@@ -18,9 +18,19 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View>
-        <GestureValueInput />
+      <View
+        style={styles.rootContainer}
+      >
+        <GestureValueInput/>
       </View>
     );
   }
 }
+
+const styles = EStyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+  },
+});
