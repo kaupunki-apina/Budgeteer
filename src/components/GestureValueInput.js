@@ -18,37 +18,47 @@ import global from '../style';
 export default class GestureValueInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {showText: true};
+    this.state = {
+      inputValue: 0,
+      hasInput: false,
+    };
   }
 
   componentWillMount() {
     this.gestureResponder = createResponder({
-      onStartShouldSetResponder: (evt, gestureState) => false,
-      onStartShouldSetResponderCapture: (evt, gestureState) => false,
-      onMoveShouldSetResponder: (evt, gestureState) => false,
+      onStartShouldSetResponder: (evt, gestureState) => true,
+      onStartShouldSetResponderCapture: (evt, gestureState) => true,
+      onMoveShouldSetResponder: (evt, gestureState) => true,
       onMoveShouldSetResponderCapture: (evt, gestureState) => true,
       onResponderTerminationRequest: (evt, gestureState) => true,
       onResponderMove: (evt, gestureState) => {
-        console.log("1");
+        const newVal = this.state.inputValue + gestureState.dx * 0.1;
+        const isValid = newVal < 0
+        this.setState({
+          inputValue: isValid
+            ? 0
+            : newVal,
+          hasInput: isValid,
+        })
       },
       onResponderRelease: (evt, gestureState) => {
-        console.log("2");
+
       },
       onResponderTerminate: (evt, gestureState) => {
-        console.log("3")
+
       },
       onResponderSingleTapConfirmed: (evt, gestureState) => {
-        console.log("4");
+        // Activate text input
+        console.log("\nsingle:" + gestureState.singleTapUp);
+        console.log("double:" + gestureState.doubleTapUp)
       },
       onResponderGrant: (evt, gestureState) => {
-        console.log("5");
       },
       debug: false,
     });
   }
 
   render() {
-    console.log(this.state);
     return (
       <View
         {...this.gestureResponder}
@@ -57,11 +67,22 @@ export default class GestureValueInput extends Component {
           this.props.style,
         ]}
       >
+      <Text
+        style={[
+          global.textDisplay3,
+          styles.textContainer,
+        ]}
+      >
         <TextInput
           style={[
             global.textDisplay4,
             styles.textInput,
           ]}
+          value={
+            this.state.inputValue != 0
+            ? Math.floor(this.state.inputValue) + ""
+            : ''
+          }
           editable={false}
           keyboardType={"numeric"}
           autoCorrect={false}
@@ -69,6 +90,8 @@ export default class GestureValueInput extends Component {
           placeholderTextColor={styles._placeholder.color}
           clearTextOnFocus={false}
         />
+          €
+        </Text>
       </View>
     );
   }
@@ -81,14 +104,18 @@ const styles = EStyleSheet.create({
   rootContainer: {
     flex: 1,
     alignSelf: 'stretch',
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '$color.accent'
   },
+  textContainer: {
+    color: '$color.textTertiary',
+    textAlign: 'center',
+  },
   textInput: {
     color: '$color.textPrimaryInverse',
-    flex: 1,
+    flexDirection: 'column',
     alignSelf: 'stretch',
     borderColor: '$color.transparent',
     textAlign: 'center',

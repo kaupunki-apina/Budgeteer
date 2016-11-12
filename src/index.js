@@ -8,6 +8,7 @@ import {
   Text,
   Navigator,
   StatusBar,
+  TouchableNativeFeedback,
 } from 'react-native';
 
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -33,7 +34,13 @@ export default class Home extends Component {
             index: 0
           }}
           renderScene={(route, navigator) => {
-            return <GestureValueInput/>
+            return (
+              <View
+                style={styles.controlsContainer}
+              >
+                <GestureValueInput/>
+              </View>
+            );
            }}
         />
       </View>
@@ -46,6 +53,13 @@ const styles = EStyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignSelf: 'stretch',
+  },
+  controlsContainer: {
+    justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    backgroundColor: '$color.accent',
   },
   statusbar: {
     color: '$color.accentDark',
