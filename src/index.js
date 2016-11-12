@@ -8,15 +8,18 @@ import {
   Text,
   Navigator,
   StatusBar,
-  TouchableNativeFeedback,
 } from 'react-native';
 
 import EStyleSheet from 'react-native-extended-stylesheet';
 import GestureValueInput from './components/GestureValueInput';
+import ImageButton from './components/ImageButton';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
+    this.state={
+
+    }
   }
 
   render() {
@@ -38,7 +41,15 @@ export default class Home extends Component {
               <View
                 style={styles.controlsContainer}
               >
-                <GestureValueInput/>
+                <ImageButton
+                  onPress={()=>console.log("press1")}
+                />
+                <GestureValueInput
+                  onInputChanged={(newInput)=> console.log("ayy!")}
+                />
+                <ImageButton
+                  onPress={()=>console.log("press2")}
+                />
               </View>
             );
            }}
@@ -58,6 +69,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
     alignSelf: 'stretch',
     backgroundColor: '$color.accent',
   },

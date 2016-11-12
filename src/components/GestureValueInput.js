@@ -39,7 +39,7 @@ export default class GestureValueInput extends Component {
             ? 0
             : newVal,
           hasInput: isValid,
-        })
+        }, this.props.onInputChanged(this.state.inputValue));
       },
       onResponderRelease: (evt, gestureState) => {
 
@@ -49,8 +49,6 @@ export default class GestureValueInput extends Component {
       },
       onResponderSingleTapConfirmed: (evt, gestureState) => {
         // Activate text input
-        console.log("\nsingle:" + gestureState.singleTapUp);
-        console.log("double:" + gestureState.doubleTapUp)
       },
       onResponderGrant: (evt, gestureState) => {
       },
@@ -89,6 +87,7 @@ export default class GestureValueInput extends Component {
           placeholder={"0"}
           placeholderTextColor={styles._placeholder.color}
           clearTextOnFocus={false}
+          multiline={false}
         />
           €
         </Text>
