@@ -6,6 +6,8 @@ import React, {
 import {
   View,
   Text,
+  Navigator,
+  StatusBar,
 } from 'react-native';
 
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -21,7 +23,19 @@ export default class Home extends Component {
       <View
         style={styles.rootContainer}
       >
-        <GestureValueInput/>
+         <StatusBar
+          backgroundColor={styles._statusbar.color}
+          barStyle="light-content"
+        />
+        <Navigator
+          initialRoute={{
+            title: 'My Initial Scene',
+            index: 0
+          }}
+          renderScene={(route, navigator) => {
+            return <GestureValueInput/>
+           }}
+        />
       </View>
     );
   }
@@ -33,4 +47,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
   },
+  statusbar: {
+    color: '$color.accentDark',
+  }
 });

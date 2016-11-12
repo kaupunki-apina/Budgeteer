@@ -18,13 +18,14 @@ import global from '../style';
 export default class GestureValueInput extends Component {
   constructor(props) {
     super(props);
+    this.state = {showText: true};
   }
 
   componentWillMount() {
     this.gestureResponder = createResponder({
-      onStartShouldSetResponder: (evt, gestureState) => true,
-      onStartShouldSetResponderCapture: (evt, gestureState) => true,
-      onMoveShouldSetResponder: (evt, gestureState) => true,
+      onStartShouldSetResponder: (evt, gestureState) => false,
+      onStartShouldSetResponderCapture: (evt, gestureState) => false,
+      onMoveShouldSetResponder: (evt, gestureState) => false,
       onMoveShouldSetResponderCapture: (evt, gestureState) => true,
       onResponderTerminationRequest: (evt, gestureState) => true,
       onResponderMove: (evt, gestureState) => {
@@ -47,13 +48,26 @@ export default class GestureValueInput extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <View
         {...this.gestureResponder}
-        style={[styles.rootContainer]}
+        style={[
+          styles.rootContainer,
+          this.props.style,
+        ]}
       >
         <TextInput
-          placeholder={"ayy"}
+          style={[
+            global.textDisplay4,
+            styles.textInput,
+          ]}
+          editable={false}
+          keyboardType={"numeric"}
+          autoCorrect={false}
+          placeholder={"0"}
+          placeholderTextColor={styles._placeholder.color}
+          clearTextOnFocus={false}
         />
       </View>
     );
@@ -61,6 +75,9 @@ export default class GestureValueInput extends Component {
 }
 
 const styles = EStyleSheet.create({
+  placeholder: {
+    color: '$color.textTertiaryInverse',
+  },
   rootContainer: {
     flex: 1,
     alignSelf: 'stretch',
@@ -69,4 +86,11 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     backgroundColor: '$color.accent'
   },
+  textInput: {
+    color: '$color.textPrimaryInverse',
+    flex: 1,
+    alignSelf: 'stretch',
+    borderColor: '$color.transparent',
+    textAlign: 'center',
+  }
 });
