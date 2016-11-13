@@ -21,7 +21,6 @@ export default class ImageButton extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <TouchableOpacity
         onPress={() =>{

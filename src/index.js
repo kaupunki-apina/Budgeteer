@@ -7,6 +7,7 @@ import {
   View,
   Text,
   Navigator,
+  AsyncStorage,
   StatusBar,
 } from 'react-native';
 
@@ -17,6 +18,7 @@ import Button from './components/Button';
 import iconLeft from '../res/icons/left.png';
 import iconRight from '../res/icons/right.png';
 
+const KEY_SPENDING = "spending";
 
 export default class Home extends Component {
   constructor(props) {
@@ -100,7 +102,24 @@ export default class Home extends Component {
                   <Button
                     label={"add"}
                     onPress={() => {
-                      console.log("uliuli");
+                      AsyncStorage.getItem(KEY_SPENDING)
+                        .then((value) => {
+                          var spending;
+                          if (value == null) {
+                            spending = [];
+                          } else {
+                            spending = JSON.parse(value);
+                          }
+                          // TODO
+                          // -Round numbers according to whats is
+                          //  visible on the UI.
+                          // -More data fields.
+                          spending.push(this.state.inputValue);
+                          AsyncStorage.setItem(
+                            KEY_SPENDING,
+                            JSON.stringify(spending)
+                          );
+                        }).done();
                     }}
                   />
                 </View>
