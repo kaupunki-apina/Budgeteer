@@ -18,10 +18,6 @@ import global from '../style';
 export default class GestureValueInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputValue: 0,
-      hasInput: false,
-    };
   }
 
   componentWillMount() {
@@ -32,14 +28,15 @@ export default class GestureValueInput extends Component {
       onMoveShouldSetResponderCapture: (evt, gestureState) => true,
       onResponderTerminationRequest: (evt, gestureState) => true,
       onResponderMove: (evt, gestureState) => {
-        const newVal = this.state.inputValue + gestureState.dx * 0.1;
+        const newVal = this.props.defaultValue + gestureState.dx * 0.1;
         const isValid = newVal < 0
-        this.setState({
-          inputValue: isValid
-            ? 0
-            : newVal,
-          hasInput: isValid,
-        }, this.props.onInputChanged(this.state.inputValue));
+        if (this.props.onInputChanged) {
+          this.props.onInputChanged(
+            isValid
+              ? 0
+              : newVal,
+          )
+        }
       },
       onResponderRelease: (evt, gestureState) => {
 
@@ -77,8 +74,8 @@ export default class GestureValueInput extends Component {
             styles.textInput,
           ]}
           value={
-            this.state.inputValue != 0
-            ? Math.floor(this.state.inputValue) + ""
+            this.props.defaultValue != 0
+            ? Math.floor(this.props.defaultValue) + ""
             : ''
           }
           editable={false}
@@ -106,7 +103,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '$color.accent'
+    backgroundColor: '$color.primary'
   },
   textContainer: {
     color: '$color.textTertiary',

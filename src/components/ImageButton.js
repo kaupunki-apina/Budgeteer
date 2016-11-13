@@ -18,32 +18,55 @@ import global from '../style';
 export default class ImageButton extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      enabled: !this.props.enabled
-        ? true
-        : this.props.enabled,
-    };
   }
 
   render() {
+    console.log(this.props);
     return (
       <TouchableOpacity
-        onPress={this.props.onPress}
+        onPress={() =>{
+          if (this.props.enabled) {
+            this.props.onPress();
+          }
+        }}
       >
         <View
           style={styles.iconContainer}
         >
-          <Image />
+          <Image
+            source={this.props.image}
+            resizeMode='contain'
+            style={[
+              {
+                flex: 1,
+                alignSelf: 'stretch',
+              },
+              this.props.enabled
+                ? styles.enabled
+                : styles.disabled
+            ]}
+          />
         </View>
       </TouchableOpacity>
     );
   }
 }
 
+ImageButton.defaultProps = {
+  enabled: true,
+}
+
 const styles = EStyleSheet.create({
   iconContainer: {
     width: 48,
     height: 48,
-    backgroundColor: 'white',
+  },
+  enabled: {
+    opacity: '$opacity.enabled',
+    backgroundColor: 'black',
+  },
+  disabled: {
+    opacity: '$opacity.disabled',
+    backgroundColor: 'black',
   }
 });
