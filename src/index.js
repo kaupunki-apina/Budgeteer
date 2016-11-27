@@ -66,7 +66,6 @@ const styles = EStyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: '$color.primary',
     padding: '$dimen.contentMargin',
-
   },
   statusbar: {
     color: '$color.primaryDark',

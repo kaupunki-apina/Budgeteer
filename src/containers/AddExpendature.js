@@ -19,6 +19,8 @@ import Button from '../components/Button';
 import iconLeft from '../../res/icons/left.png';
 import iconRight from '../../res/icons/right.png';
 
+const KEY_SPENDING = "spending";
+
 export default class AddExendature extends Component {
   constructor(props) {
     super(props);
