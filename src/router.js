@@ -3,12 +3,12 @@ import {
   createRouter,
 } from '@exponent/ex-navigation';
 
-import AddExendature from './containers/AddExpendature';
-import PastExpendature from './containers/PastExpendature';
+import AddExendature from './containers/AddExpenditure';
+import PastExpenditure from './containers/PastExpenditure';
 
 const Router = createRouter(() => ({
   addExendature: () => AddExendature,
-  pastExpendature: () => PastExpendature,
+  pastExpenditure: () => PastExpenditure,
 }));
 
 export default Router;

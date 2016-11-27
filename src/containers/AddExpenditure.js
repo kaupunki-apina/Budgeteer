@@ -14,21 +14,22 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Router from '../router';
+import DatabaseHandler from '../DatabaseHandler';
 import GestureValueInput from '../components/GestureValueInput';
 import ImageButton from '../components/ImageButton';
 import Button from '../components/Button';
 import iconLeft from '../../res/icons/left.png';
 import iconRight from '../../res/icons/right.png';
 
-const KEY_SPENDING = "spending";
 
-export default class AddExpendature extends Component {
+export default class AddExpenditure extends Component {
+
   constructor(props) {
     super(props);
     this.state={
       inputValue: 0,
     }
-
+    this.databaseHandler = new DatabaseHandler();
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
   }
@@ -90,31 +91,16 @@ export default class AddExpendature extends Component {
           <Button
             label={"add"}
             onPress={() => {
-              AsyncStorage.getItem(KEY_SPENDING)
-                .then((value) => {
-                  var spending;
-                  if (value == null) {
-                    spending = [];
-                  } else {
-                    spending = JSON.parse(value);
-                  }
-                  // TODO
-                  // -Round numbers according to whats is
-                  //  visible on the UI.
-                  // -More data fields.
-                  spending.push(this.state.inputValue);
-                  AsyncStorage.setItem(
-                    KEY_SPENDING,
-                    JSON.stringify(spending)
-                  );
-                }).done();
+              this.databaseHandler
+                .putExpenditure(Math.floor(this.state.inputValue))
+                .flush();
             }}
           />
 
           <Button
             label={"history"}
             onPress={() => {
-              this.props.navigator.push(Router.getRoute('pastExpendature'))
+              this.props.navigator.push(Router.getRoute('pastExpenditure'))
             }}
           />
         </View>

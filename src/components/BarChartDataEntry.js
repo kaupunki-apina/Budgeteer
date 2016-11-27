@@ -46,7 +46,7 @@ export default class BarChartDataEntry extends Component {
           styles.rootContainer
         }
       >
-        {this.props.leftToRight &&
+        {this.props.rightToLeft &&
           <Animated.View
             style={[
               styles.spacer,
@@ -59,7 +59,7 @@ export default class BarChartDataEntry extends Component {
         <Animated.View
           style={[
             styles.bar,
-            this.props.leftToRight
+            this.props.rightToLeft
               ? styles.barLeftToRight
               : styles.barRightToLeft,
             {
@@ -70,10 +70,10 @@ export default class BarChartDataEntry extends Component {
           <Text
             style={styles.valueLabel}
           >
-            {this.props.value}
+            {/* this.props.value */}
           </Text>
         </Animated.View>
-        {!this.props.leftToRight &&
+        {!this.props.rightToLeft &&
           <Animated.View
             style={[
               styles.spacer,
@@ -89,7 +89,7 @@ export default class BarChartDataEntry extends Component {
 }
 
 BarChartDataEntry.defaultProps = {
-  leftToRight: false,
+  rightToLeft: false,
   valueLabels: true,
 }
 
@@ -102,18 +102,19 @@ const styles = EStyleSheet.create({
   },
   bar: {
     height: '$barHeight',
-    backgroundColor: '$color.themeAccent',
     borderRadius: '$dimen.borderRadius',
   },
   barLeftToRight: {
     alignItems: 'flex-start',
     justifyContent: 'center',
     paddingLeft: '$dimen.marginSmall',
+    backgroundColor: '$color.themeAccent',
   },
   barRightToLeft: {
     alignItems: 'flex-end',
     justifyContent: 'center',
     paddingRight: '$dimen.marginSmall',
+    backgroundColor: '$color.themeAccentSeconday',
   },
   spacer: {
     backgroundColor: 'rgba(0, 0, 0, 0)',

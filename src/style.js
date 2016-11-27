@@ -12,11 +12,12 @@ EStyleSheet.build({
   },
   color: {
     // Application theme
-    themeDark: "#54493f",
-    themeModerate: "#726e68",
+    themeDark: "#27221d",
+    themeModerate: "#68645f",
     themeNeutral: "#a39f94",
     themeLight: "#f7f2ed",
-    themeAccent: "#cc4f2c",
+    themeAccent: "#ba563b",
+    themeAccentSeconday: "#319599",
 
     // Text color scehme
     textPrimary: "rgba(0, 0, 0, 0.87)",
