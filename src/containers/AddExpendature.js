@@ -13,6 +13,7 @@ import {
 
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+import Router from '../router';
 import GestureValueInput from '../components/GestureValueInput';
 import ImageButton from '../components/ImageButton';
 import Button from '../components/Button';
@@ -21,7 +22,7 @@ import iconRight from '../../res/icons/right.png';
 
 const KEY_SPENDING = "spending";
 
-export default class AddExendature extends Component {
+export default class AddExpendature extends Component {
   constructor(props) {
     super(props);
     this.state={
@@ -109,6 +110,13 @@ export default class AddExendature extends Component {
                 }).done();
             }}
           />
+
+          <Button
+            label={"history"}
+            onPress={() => {
+              this.props.navigator.push(Router.getRoute('pastExpendature'))
+            }}
+          />
         </View>
       </View>
     );
@@ -132,9 +140,6 @@ const styles = EStyleSheet.create({
   },
   confirmButtonContainer: {
     marginVertical: '$dimen.contentMargin',
-  },
-  statusbar: {
-    color: '$color.primaryDark',
   },
   button: {
     zIndex: 10,
