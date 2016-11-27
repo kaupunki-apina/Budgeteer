@@ -13,9 +13,7 @@ import {
 
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import GestureValueInput from '../components/GestureValueInput';
-import ImageButton from '../components/ImageButton';
-import Button from '../components/Button';
+import BarChart from '../components/BarChart';
 
 const KEY_SPENDING = "spending";
 
@@ -29,7 +27,7 @@ export default class PastExpendature extends Component {
       <View
         style={styles.rootContainer}
       >
-        <Text>Uliuli</Text>
+        <BarChart/>
       </View>
     );
   }

@@ -5,8 +5,10 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 EStyleSheet.build({
   dimen: {
     marginSmall: 8,
+    marginMedium: 16,
     contentMargin: 16,
     touchableMin: 48,
+    borderRadius: 4,
   },
   color: {
     // Application theme
