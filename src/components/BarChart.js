@@ -19,7 +19,6 @@ export default class BarChart extends Component {
       <View
         style={styles.rootContainer}
       >
-        <ScrollView>
           {this.props.data.map((entry, index) => {
             return (
               <BarChartDataEntry
@@ -29,14 +28,13 @@ export default class BarChart extends Component {
               />
             );
           })}
-        </ScrollView>
       </View>
     );
   }
 }
 
 BarChart.defaultProps = {
-  data: [0.3,0.1,1,0,0,0.25, 2,]
+  data: [0.3,0.01,1,0,0,0.25, 2,1,0.3,0.21,0.4,0.2,0.2,1,1,1,1,0.97,0.3]
 }
 
 const styles = EStyleSheet.create({

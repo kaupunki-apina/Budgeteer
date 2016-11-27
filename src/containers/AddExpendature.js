@@ -128,7 +128,7 @@ const styles = EStyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignSelf: 'stretch',
-    backgroundColor: '$color.primary',
+    backgroundColor: '$color.themeModerate',
     padding: '$dimen.contentMargin',
   },
   inputControlsContainer: {

@@ -8,7 +8,7 @@ import {
   Text,
   Navigator,
   AsyncStorage,
-  StatusBar,
+  ScrollView
 } from 'react-native';
 
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -24,11 +24,24 @@ export default class PastExpendature extends Component {
 
   render() {
     return (
-      <View
+      <ScrollView
         style={styles.rootContainer}
       >
-        <BarChart/>
-      </View>
+        <View
+          style={[
+            styles.contentContainer,
+            styles.header,
+          ]}
+        >
+        </View>
+        <View
+          style={[
+            styles.contentContainer,
+          ]}
+        >
+          <BarChart/>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -38,7 +51,13 @@ const styles = EStyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignSelf: 'stretch',
-    backgroundColor: '$color.primary',
-    padding: '$dimen.contentMargin',
+    backgroundColor: '$color.themeLight',
   },
+  contentContainer: {
+    paddingHorizontal: '$dimen.contentMargin',
+  },
+  header: {
+    backgroundColor: '$color.themeModerate',
+    height: 200,
+  }
 });

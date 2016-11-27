@@ -103,7 +103,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '$color.primary'
+    backgroundColor: '$color.themeModerate'
   },
   textContainer: {
     color: '$color.textTertiary',

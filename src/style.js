@@ -12,8 +12,11 @@ EStyleSheet.build({
   },
   color: {
     // Application theme
-    primary: "rgb(139, 20, 38)",
-    primaryDark: "rgb(98, 13, 31)",
+    themeDark: "#54493f",
+    themeModerate: "#726e68",
+    themeNeutral: "#a39f94",
+    themeLight: "#f7f2ed",
+    themeAccent: "#cc4f2c",
 
     // Text color scehme
     textPrimary: "rgba(0, 0, 0, 0.87)",

@@ -11,8 +11,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet';
 import global from '../style';
 
-export default class DataEntry extends Component {
-
+export default class BarChartDataEntry extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -47,25 +46,51 @@ export default class DataEntry extends Component {
           styles.rootContainer
         }
       >
+        {this.props.leftToRight &&
+          <Animated.View
+            style={[
+              styles.spacer,
+              {
+                flex: this.state.spacerWidth,
+              }
+            ]}
+          />
+        }
         <Animated.View
           style={[
             styles.bar,
+            this.props.leftToRight
+              ? styles.barLeftToRight
+              : styles.barRightToLeft,
             {
               flex: this.state.barWidth
             }
           ]}
-        />
-        <Animated.View
-          style={[
-            styles.spacer,
-            {
-              flex: this.state.spacerWidth,
-            }
-          ]}
-        />
+        >
+          <Text
+            style={styles.valueLabel}
+          >
+            {this.props.value}
+          </Text>
+        </Animated.View>
+        {!this.props.leftToRight &&
+          <Animated.View
+            style={[
+              styles.spacer,
+              {
+                flex: this.state.spacerWidth,
+              }
+            ]}
+          />
+        }
       </View>
     );
   }
+}
+
+BarChartDataEntry.defaultProps = {
+  leftToRight: false,
+  valueLabels: true,
 }
 
 const styles = EStyleSheet.create({
@@ -77,10 +102,23 @@ const styles = EStyleSheet.create({
   },
   bar: {
     height: '$barHeight',
-    backgroundColor: 'white',
+    backgroundColor: '$color.themeAccent',
     borderRadius: '$dimen.borderRadius',
+  },
+  barLeftToRight: {
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    paddingLeft: '$dimen.marginSmall',
+  },
+  barRightToLeft: {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    paddingRight: '$dimen.marginSmall',
   },
   spacer: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
-  }
+  },
+  valueLabel: {
+    fontSize: 18,
+  },
 });
