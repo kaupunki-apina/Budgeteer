@@ -91,9 +91,14 @@ export default class AddExpenditure extends Component {
           <Button
             label={"add"}
             onPress={() => {
+              const date = new Date();
               this.databaseHandler
-                .putExpenditure(Math.floor(this.state.inputValue))
-                .flush();
+                .putExpenditure(
+                  Math.floor(this.state.inputValue),
+                  date.getDate(),
+                  date.getMonth(),
+                  date.getFullYear(),
+                ).flush();
             }}
           />
 

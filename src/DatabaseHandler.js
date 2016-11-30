@@ -11,22 +11,31 @@ export default class DatabaseHandler {
   constructor() {
     this.asyncStorage = AsyncStorage.getItem(KEY_SPENDING)
       .then((value) => {
-        if (value == null) {
-          this.spending = [];
-        } else {
-          this.spending = JSON.parse(value);
-        }
+        this.spending = value === null
+          ? {}
+          : JSON.parse(value);
       }).done();
   }
 
-  async getSpending() {
-    
+  getSpending(year, month) {
+    // const daysInMonth = new Date(year, month, 0).getDate();
+    // const monthlySpending = [daysInMonth];
+    //
+    // if (this.spending[year] !== undefined ||
+    //   this.spending[year][month] !== undefined
+    // ) {
+    //   this.spending[year][month].map((key, value) => {
+    //     // TODO
+    //     // Populate returned array
+    //   });
+    // }
   }
 
-  putExpenditure(amount) {
-    const spending = new Spending();
-    spending.amount = amount;
-    this.spending.push(spending);
+  putExpenditure(amount, day, month, year) {
+    if (this.spending[year] === undefined) this.spending[year] = [];
+    if (this.spending[year][month] === undefined) this.spending[year][month] = [];
+    if (this.spending[year][month][day] === undefined) this.spending[year][month][day] = 0;
+    this.spending[year][month][day] += amount;
     return this;
   }
 
