@@ -25,6 +25,27 @@ export default class PastExpenditure extends Component {
   constructor(props) {
     super(props);
     this.databaseHandler = new DatabaseHandler();
+    this.state = {
+      spending: [],
+      date: new Date(),
+    };
+
+    // TODO
+    // Use localization
+    this.months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
   }
 
   render() {
@@ -41,8 +62,16 @@ export default class PastExpenditure extends Component {
           <ImageButton
             style={styles.button}
             image={iconLeft}
-            onPress={()=>{
+            onPress={() => {
+              var month = this.state.date.getMonth() - 1;
+              var year = this.state.date.getFullYear();
+
+              if (month < 0) {
+                month = 11;
+                year--;
+              }
               this.setState({
+                date: new Date(year, month, 1),
               });
             }}
           />
@@ -52,19 +81,28 @@ export default class PastExpenditure extends Component {
             <Text
               style={styles.headerTextPrimary}
             >
-              marraskuu
+              {this.months[this.state.date.getMonth()]}
             </Text>
             <Text
               style={styles.headerTextSeconday}
             >
-              2016
+              {this.state.date.getFullYear()}
             </Text>
           </View>
           <ImageButton
             style={styles.button}
             image={iconRight}
-            onPress={()=>{
+            onPress={() => {
+              var month = this.state.date.getMonth() + 1;
+              var year = this.state.date.getFullYear();
 
+              if (month > 11) {
+                month = 0;
+                year++;
+              }
+              this.setState({
+                date: new Date(year, month, 1),
+              });
             }}
           />
         </View>

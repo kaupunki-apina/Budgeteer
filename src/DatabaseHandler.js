@@ -3,32 +3,33 @@ import {
   AsyncStorage,
 } from 'react-native';
 
-import Spending from './models/Spending';
-
 const KEY_SPENDING = "spending";
 
 export default class DatabaseHandler {
   constructor() {
     this.asyncStorage = AsyncStorage.getItem(KEY_SPENDING)
       .then((value) => {
-        this.spending = value === null
+        this.spending = (value === null)
           ? {}
           : JSON.parse(value);
       }).done();
   }
 
   getSpending(year, month) {
-    // const daysInMonth = new Date(year, month, 0).getDate();
-    // const monthlySpending = [daysInMonth];
-    //
-    // if (this.spending[year] !== undefined ||
-    //   this.spending[year][month] !== undefined
-    // ) {
-    //   this.spending[year][month].map((key, value) => {
-    //     // TODO
-    //     // Populate returned array
-    //   });
-    // }
+    return new Promise((resolve, reject) => {
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const monthlySpending = [daysInMonth];
+      if (this.spending[year] !== undefined ||
+        this.spending[year][month] !== undefined
+      ) {
+        this.spending[year][month].map((key, value) => {
+          // TODO
+          // Populate array
+          console.log("key: " + key + "  value: " + value);
+        });
+      }
+      reject("tmp");
+    });
   }
 
   putExpenditure(amount, day, month, year) {
