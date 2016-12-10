@@ -21,19 +21,27 @@ export default class BarChart extends Component {
     this.maxValueFromData = this.maxValueFromData.bind(this);
 
     this.state = {
-      maxValue: props.maxValue || this.maxValueFromData()
+      maxValue: props.maxValue || this.maxValueFromData(this.props.data)
     };
   }
 
-  maxValueFromData() {
+  maxValueFromData(data) {
     var maxValue;
-    this.props.data.map((value)=> {
+    data.map((value)=> {
+      console.log("value; " + value)
       if (maxValue === undefined || maxValue < value) {
+        console.log("setting: " + value);
         maxValue = value
       }
     })
 
     return maxValue;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      maxValue: nextProps.maxValue || this.maxValueFromData(nextProps.data),
+    });
   }
 
   render() {

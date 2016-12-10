@@ -21,7 +21,30 @@ export default class BarChartDataEntry extends Component {
   }
 
   componentDidMount() {
-    const percentage = this.props.value / this.props.maxValue;
+    var percentage = this.props.value / this.props.maxValue;
+    if (!percentage) percentage = 0.01;
+    console.log(!percentage)
+    Animated.spring(
+      this.state.barWidth,
+      {
+        toValue: percentage,
+        friction: 15,
+      }
+    ).start();
+
+    Animated.spring(
+      this.state.spacerWidth,
+      {
+        toValue: 1 - percentage,
+        friction: 15,
+      }
+    ).start();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    var percentage = nextProps.value / nextProps.maxValue;
+    if (!percentage) percentage = 0.01;
+    console.log(!percentage)
     Animated.spring(
       this.state.barWidth,
       {
