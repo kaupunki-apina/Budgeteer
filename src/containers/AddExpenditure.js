@@ -9,6 +9,7 @@ import {
   Navigator,
   AsyncStorage,
   StatusBar,
+  ToastAndroid,
 } from 'react-native';
 
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -66,9 +67,6 @@ export default class AddExpenditure extends Component {
           <GestureValueInput
             style={styles.inputArea}
             onInputChanged={(newInput)=> {
-              // TODO
-              // Parent is not being notified of the LASTEST
-              // change in GestureValueInput.
               this.setState({
                 inputValue: newInput,
               });
@@ -101,6 +99,12 @@ export default class AddExpenditure extends Component {
                 ).then((databaseHandler) => {
                   databaseHandler.flush();
                 });
+                this.setState({
+                  inputValue: 0,
+                });
+                // TODO
+                // Localization
+                ToastAndroid.show('Saved', ToastAndroid.SHORT);
             }}
           />
 
