@@ -62,9 +62,7 @@ export default class PastExpenditure extends Component {
       spending.map((entry, index) => {
         budget -= entry;
         budgetData[index] = budget;
-      })
-
-
+      });
 
       this.setState({
         spending: spending,
@@ -75,6 +73,8 @@ export default class PastExpenditure extends Component {
     });
   }
   render() {
+    const today = new Date();
+
     return (
       <ScrollView
         style={styles.rootContainer}
@@ -120,6 +120,10 @@ export default class PastExpenditure extends Component {
           <ImageButton
             style={styles.button}
             image={iconRight}
+            enabled={
+              today.getFullYear() === this.state.date.getFullYear() &&
+              today.getMonth() > this.state.date.getMonth()
+            }
             onPress={() => {
               var month = this.state.date.getMonth() + 1;
               var year = this.state.date.getFullYear();
@@ -151,16 +155,12 @@ export default class PastExpenditure extends Component {
               title={"Spending"}
               rightToLeft={true}
               data={this.state.spending}
-              style={{
-                flex: 0.5,
-              }}
+              style={styles.chart}
             />
             <BarChart
               title={"Budget"}
               data={this.state.budget}
-              style={{
-                flex: 0.5,
-              }}
+              style={styles.chart}
             />
           </View>
         </View>
@@ -203,4 +203,7 @@ const styles = EStyleSheet.create({
   button: {
     zIndex: 10,
   },
+  chart: {
+    flex: 0.5,
+  }
 });

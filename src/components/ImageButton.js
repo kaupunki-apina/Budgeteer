@@ -36,10 +36,7 @@ export default class ImageButton extends Component {
             source={this.props.image}
             resizeMode='contain'
             style={[
-              {
-                flex: 1,
-                alignSelf: 'stretch',
-              },
+              styles.icon,
               this.props.enabled
                 ? styles.enabled
                 : styles.disabled
@@ -60,6 +57,10 @@ const styles = EStyleSheet.create({
     width: 48,
     height: 48,
   },
+  icon: {
+    flex: 1,
+    alignSelf: 'stretch',
+  }
   enabled: {
     opacity: '$opacity.enabled',
     backgroundColor: 'black',
