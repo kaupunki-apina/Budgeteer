@@ -12,14 +12,14 @@ export default class DatabaseHandler {
         this.spending = (value === null)
           ? {}
           : JSON.parse(value);
-      }).done();
+      });
   }
 
-  getSpending(year, month) {
+  async getSpending(year, month) {
+    await this.asyncStorage;
     return new Promise((resolve, reject) => {
       // Helper variable
       const today = new Date();
-
       const isCurrentMonth = (year, month) => {
         return today.getMonth() === month
           && today.getFullYear() === year
@@ -32,7 +32,6 @@ export default class DatabaseHandler {
         : new Date(year, month + 1, 0).getDate();
 
       var monthlySpending = Array.apply(null, Array(daysInMonth)).map(() => { return 0 });
-
       if (this.spending.hasOwnProperty(year)
         && this.spending[year].hasOwnProperty(month)
       ) {
@@ -44,12 +43,15 @@ export default class DatabaseHandler {
     });
   }
 
-  putExpenditure(amount, day, month, year) {
-    if (!this.spending.hasOwnProperty(year)) this.spending[year] = {};
-    if (!this.spending[year].hasOwnProperty(month)) this.spending[year][month] = {};
-    if (!this.spending[year][month].hasOwnProperty(day)) this.spending[year][month][day] = 0;
-    this.spending[year][month][day] += amount;
-    return this;
+  async putExpenditure(amount, day, month, year) {
+    await this.asyncStorage;
+    return new Promise((resolve, reject) => {
+      if (!this.spending.hasOwnProperty(year)) this.spending[year] = {};
+      if (!this.spending[year].hasOwnProperty(month)) this.spending[year][month] = {};
+      if (!this.spending[year][month].hasOwnProperty(day)) this.spending[year][month][day] = 0;
+      this.spending[year][month][day] += amount;
+      resolve(this);
+    })
   }
 
   flush() {

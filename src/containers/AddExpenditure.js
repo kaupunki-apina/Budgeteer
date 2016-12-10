@@ -98,7 +98,9 @@ export default class AddExpenditure extends Component {
                   date.getDate(),
                   date.getMonth(),
                   date.getFullYear(),
-                ).flush();
+                ).then((databaseHandler) => {
+                  databaseHandler.flush();
+                });
             }}
           />
 
