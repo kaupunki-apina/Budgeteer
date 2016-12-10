@@ -56,9 +56,19 @@ export default class PastExpenditure extends Component {
       this.state.date.getMonth()
     ).then((spending) => {
       // TODO
-      // Calculate budget
+      var budget = 500;
+      var budgetData = Array(spending.length);
+
+      spending.map((entry, index) => {
+        budget -= entry;
+        budgetData[index] = budget;
+      })
+
+
+
       this.setState({
         spending: spending,
+        budget: budgetData,
       });
     }).catch((error) => {
       console.log(error)
@@ -138,6 +148,7 @@ export default class PastExpenditure extends Component {
             }}
           >
             <BarChart
+              title={"Spending"}
               rightToLeft={true}
               data={this.state.spending}
               style={{
@@ -145,7 +156,8 @@ export default class PastExpenditure extends Component {
               }}
             />
             <BarChart
-              data={this.state.spending}
+              title={"Budget"}
+              data={this.state.budget}
               style={{
                 flex: 0.5,
               }}

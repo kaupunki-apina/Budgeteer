@@ -22,7 +22,7 @@ export default class BarChartDataEntry extends Component {
 
   componentDidMount() {
     var percentage = this.props.value / this.props.maxValue;
-    if (!percentage) percentage = 0.01;
+    if (!percentage || percentage < 0.01) percentage = 0.01;
     console.log(!percentage)
     Animated.spring(
       this.state.barWidth,
@@ -43,7 +43,7 @@ export default class BarChartDataEntry extends Component {
 
   componentWillReceiveProps(nextProps) {
     var percentage = nextProps.value / nextProps.maxValue;
-    if (!percentage) percentage = 0.01;
+    if (!percentage) percentage = 0.01; // Quick fix for cases when percentage === NaN
     console.log(!percentage)
     Animated.spring(
       this.state.barWidth,
@@ -69,6 +69,14 @@ export default class BarChartDataEntry extends Component {
           styles.rootContainer
         }
       >
+      <Text
+        style={[
+          styles.labelContainer,
+          styles.labelBottom,
+        ]}
+      >
+        {this.props.value}
+      </Text>
         {this.props.rightToLeft &&
           <Animated.View
             style={[
@@ -90,11 +98,6 @@ export default class BarChartDataEntry extends Component {
             }
           ]}
         >
-          <Text
-            style={styles.valueLabel}
-          >
-            {/* this.props.value */}
-          </Text>
         </Animated.View>
         {!this.props.rightToLeft &&
           <Animated.View
@@ -106,6 +109,14 @@ export default class BarChartDataEntry extends Component {
             ]}
           />
         }
+        <Text
+          style={[
+            styles.labelContainer,
+            styles.labelTop,
+          ]}
+        >
+          {this.props.value}
+        </Text>
       </View>
     );
   }
@@ -144,5 +155,19 @@ const styles = EStyleSheet.create({
   },
   valueLabel: {
     fontSize: 18,
+  },
+  labelContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
+  },
+  labelBottom: {
+    color: '$color.textPrimary',
+  },
+  labelTop: {
+    color: '$color.textSecondaryInverse',
   },
 });
