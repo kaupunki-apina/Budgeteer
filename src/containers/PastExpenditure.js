@@ -27,9 +27,9 @@ export default class PastExpenditure extends Component {
     this.databaseHandler = new DatabaseHandler();
     this.state = {
       spending: [],
+      budget: [],
       date: new Date(),
     };
-
     // TODO
     // Use localization
     this.months = [
@@ -46,8 +46,25 @@ export default class PastExpenditure extends Component {
       "November",
       "December",
     ];
+    this.updateSpending = this.updateSpending.bind(this)
+    this.updateSpending();
   }
 
+  updateSpending() {
+    this.databaseHandler.getSpending(
+      this.state.date.getFullYear(),
+      this.state.date.getMonth()
+    ).then((result) => {
+      // TODO
+      // Calculate budget
+      console.log(result)
+      this.setState({
+        //spending: result,
+      });
+    }).catch((error) => {
+      console.log(error)
+    });
+  }
   render() {
     return (
       <ScrollView
@@ -71,7 +88,9 @@ export default class PastExpenditure extends Component {
                 year--;
               }
               this.setState({
-                date: new Date(year, month, 1),
+                date: new Date(year, month),
+              }, () => {
+                this.updateSpending()
               });
             }}
           />
@@ -101,7 +120,9 @@ export default class PastExpenditure extends Component {
                 year++;
               }
               this.setState({
-                date: new Date(year, month, 1),
+                date: new Date(year, month),
+              }, () => {
+                this.updateSpending()
               });
             }}
           />
@@ -119,26 +140,13 @@ export default class PastExpenditure extends Component {
           >
             <BarChart
               rightToLeft={true}
-              data={[
-                0.17,
-                0.18,
-                0.26,
-                0.28,
-                0.33,
-              ]}
-              maxValue={1}
+              data={this.state.spending}
               style={{
                 flex: 0.5,
               }}
             />
             <BarChart
-              data={[
-                0.02,
-                0.07,
-                0.04,
-                0.05,
-                0.1,
-              ]}
+              data={this.state.spending}
               style={{
                 flex: 0.5,
               }}

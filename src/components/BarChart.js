@@ -48,7 +48,7 @@ export default class BarChart extends Component {
             return (
               <BarChartDataEntry
                 key={index}
-                value={entry}
+                value={entry || 0}
                 maxValue={this.state.maxValue}
                 rightToLeft={this.props.rightToLeft}
               />
@@ -67,5 +67,5 @@ BarChart.defaultProps = {
 const styles = EStyleSheet.create({
   rootContainer: {
     flex: 1,
-  }
+  },
 });
