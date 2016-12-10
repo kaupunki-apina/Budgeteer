@@ -10,7 +10,7 @@ import {
 
 import EStyleSheet from 'react-native-extended-stylesheet';
 import BarChartDataEntry from './BarChartDataEntry'
-import global from '../style';
+import globalStyle from '../style';
 
 
 export default class BarChart extends Component {
@@ -52,16 +52,24 @@ export default class BarChart extends Component {
           this.props.styles,
         ]}
       >
-          {this.props.data && this.props.data.map((entry, index) => {
-            return (
-              <BarChartDataEntry
-                key={index}
-                value={entry || 0}
-                maxValue={this.state.maxValue}
-                rightToLeft={this.props.rightToLeft}
-              />
-            );
-          })}
+        <Text
+          style={[
+            globalStyle.textTitle,
+            styles.title
+          ]}
+        >
+          {this.props.title}
+        </Text>
+        {this.props.data && this.props.data.map((entry, index) => {
+          return (
+            <BarChartDataEntry
+              key={index}
+              value={entry || 0}
+              maxValue={this.state.maxValue}
+              rightToLeft={this.props.rightToLeft}
+            />
+          );
+        })}
       </View>
     );
   }
@@ -75,4 +83,8 @@ const styles = EStyleSheet.create({
   rootContainer: {
     flex: 1,
   },
+  title: {
+    textAlign: 'center',
+    color: '$color.textSecondary',
+  }
 });

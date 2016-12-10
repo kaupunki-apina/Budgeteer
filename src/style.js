@@ -40,7 +40,7 @@ EStyleSheet.build({
 });
 
 // Global styles
-export default global = EStyleSheet.create({
+export default globalStyle = EStyleSheet.create({
   textBody: {
     fontSize: 12,
     fontWeight: 'normal',
