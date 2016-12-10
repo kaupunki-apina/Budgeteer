@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import EStyleSheet from 'react-native-extended-stylesheet';
-import global from '../style';
+import globalStyle from '../style';
 
 export default class BarChartDataEntry extends Component {
   constructor (props) {
@@ -71,6 +71,7 @@ export default class BarChartDataEntry extends Component {
       >
       <Text
         style={[
+          globalStyle.textSubHeading,
           styles.labelContainer,
           styles.labelBottom,
         ]}
@@ -111,6 +112,7 @@ export default class BarChartDataEntry extends Component {
         }
         <Text
           style={[
+            globalStyle.textSubHeading,
             styles.labelContainer,
             styles.labelTop,
           ]}
@@ -152,9 +154,6 @@ const styles = EStyleSheet.create({
   },
   spacer: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
-  },
-  valueLabel: {
-    fontSize: 18,
   },
   labelContainer: {
     position: 'absolute',

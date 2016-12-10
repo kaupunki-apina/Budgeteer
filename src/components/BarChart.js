@@ -60,7 +60,7 @@ export default class BarChart extends Component {
         >
           {this.props.title}
         </Text>
-        {this.props.data && this.props.data.map((entry, index) => {
+        {this.props.data && this.props.data.reverse().map((entry, index) => {
           return (
             <BarChartDataEntry
               key={index}
