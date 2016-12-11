@@ -1,10 +1,12 @@
 module.exports = {
   'defaultBudget': 500,
-  'defaultCurrency': '$',
+  'defaultCurrency': '€',
   'currencies': [
     "€",
-    "¢",
     "$",
+    "£",
+    "¥",
+    "Ƀ",
   ],
 
   KEY_SPENDING: "spending",
