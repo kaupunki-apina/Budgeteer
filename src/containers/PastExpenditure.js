@@ -16,8 +16,6 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import DatabaseHandler from '../DatabaseHandler';
 import BarChart from '../components/BarChart';
 import ImageButton from '../components/ImageButton';
-import iconLeft from '../../img/icons/left.png';
-import iconRight from '../../img/icons/right.png';
 
 const KEY_SPENDING = "spending";
 

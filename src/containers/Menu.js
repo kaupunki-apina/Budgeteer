@@ -20,8 +20,6 @@ import DatabaseHandler from '../DatabaseHandler';
 import GestureValueInput from '../components/GestureValueInput';
 import ImageButton from '../components/ImageButton';
 import Button from '../components/Button';
-import iconLeft from '../../img/icons/left.png';
-import iconRight from '../../img/icons/right.png';
 
 
 export default class Menu extends Component {
