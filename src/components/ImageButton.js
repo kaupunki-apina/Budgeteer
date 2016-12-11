@@ -11,6 +11,7 @@ import {
 
 import {createResponder} from 'react-native-gesture-responder';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import global from '../style';
 
@@ -33,14 +34,15 @@ export default class ImageButton extends Component {
         <View
           style={styles.iconContainer}
         >
-          <Image
-            source={this.props.image}
-            resizeMode='contain'
+          <Icon
+            name={this.props.iconName || "chevron-left"}
+            size={this.props.iconSize || styles.$iconSize}
+            color={this.props.iconColor || styles.$iconColor}
             style={[
-              styles.icon,
               this.props.enabled
                 ? styles.enabled
                 : styles.disabled,
+              styles.icon,
               this.props.iconStyle,
             ]}
           />
@@ -55,20 +57,19 @@ ImageButton.defaultProps = {
 }
 
 const styles = EStyleSheet.create({
+  $iconSize: 48,
+  $iconColor: '$color.textPrimary',
+
   iconContainer: {
     width: '$dimen.touchableMin',
     height: '$dimen.touchableMin',
-  },
-  icon: {
-    flex: 1,
-    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   enabled: {
     opacity: '$opacity.enabled',
-    backgroundColor: 'black',
   },
   disabled: {
     opacity: '$opacity.disabled',
-    backgroundColor: 'black',
   }
 });

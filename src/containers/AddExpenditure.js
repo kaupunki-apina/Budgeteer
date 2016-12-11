@@ -19,8 +19,6 @@ import DatabaseHandler from '../DatabaseHandler';
 import GestureValueInput from '../components/GestureValueInput';
 import ImageButton from '../components/ImageButton';
 import Button from '../components/Button';
-import iconLeft from '../../res/icons/left.png';
-import iconRight from '../../res/icons/right.png';
 
 
 export default class AddExpenditure extends Component {
@@ -67,7 +65,7 @@ export default class AddExpenditure extends Component {
         >
           <ImageButton
             style={styles.button}
-            image={iconLeft}
+            iconName={"remove"}
             enabled={Math.floor(this.state.inputValue) != 0}
             onPress={()=>{
               this.setState({
@@ -87,7 +85,7 @@ export default class AddExpenditure extends Component {
           />
           <ImageButton
             style={styles.button}
-            image={iconRight}
+            iconName={"add"}
             onPress={()=>{
               this.setState({
                 inputValue: this.increment(),
@@ -135,9 +133,13 @@ export default class AddExpenditure extends Component {
           />
         </View>
         <ImageButton
-        onPress={()=>{
-          this.props.navigator.push(Router.getRoute('menu'));
-        }}
+          iconName={"settings"}
+          iconColor={styles.$menuIconColor}
+          iconStyle={{opacity: 1}}
+          iconSize={36}
+          onPress={()=>{
+            this.props.navigator.push(Router.getRoute('menu'));
+          }}
           style={[
             styles.button,
             styles.buttonMenu,
@@ -149,6 +151,7 @@ export default class AddExpenditure extends Component {
 }
 
 const styles = EStyleSheet.create({
+  $menuIconColor: '$color.textPrimaryInverse',
   rootContainer: {
     flex: 1,
     flexDirection: 'column',
@@ -182,9 +185,8 @@ const styles = EStyleSheet.create({
   },
   buttonMenu: {
     position: 'absolute',
-    top: '$dimen.contentMargin',
+    top: 0,
     right: '$dimen.contentMargin',
-    backgroundColor: 'white',
   },
   inputArea: {
     zIndex: 1,

@@ -20,8 +20,8 @@ import DatabaseHandler from '../DatabaseHandler';
 import GestureValueInput from '../components/GestureValueInput';
 import ImageButton from '../components/ImageButton';
 import Button from '../components/Button';
-import iconLeft from '../../res/icons/left.png';
-import iconRight from '../../res/icons/right.png';
+import iconLeft from '../../img/icons/left.png';
+import iconRight from '../../img/icons/right.png';
 
 
 export default class Menu extends Component {
@@ -105,7 +105,8 @@ export default class Menu extends Component {
           >
             <ImageButton
               style={styles.button}
-              image={iconLeft}
+              iconName={"remove"}
+              iconSize={styles.$iconSize}
               enabled={Math.floor(this.state.budget) > 1}
               onPress={()=>{
                 this.setState({
@@ -126,7 +127,8 @@ export default class Menu extends Component {
             />
             <ImageButton
               style={styles.button}
-              image={iconRight}
+              iconName={"add"}
+              iconSize={styles.$iconSize}
               onPress={()=>{
                 this.setState({
                   budget: this.increment(),
@@ -158,6 +160,7 @@ export default class Menu extends Component {
 }
 
 const styles = EStyleSheet.create({
+  $iconSize: 24,
   rootContainer: {
     flex: 1,
     flexDirection: 'column',

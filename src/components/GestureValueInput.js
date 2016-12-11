@@ -47,12 +47,16 @@ export default class GestureValueInput extends Component {
 
       },
       onResponderSingleTapConfirmed: (evt, gestureState) => {
-        // Activate text input
+
       },
       onResponderGrant: (evt, gestureState) => {
       },
       debug: false,
     });
+  }
+
+  componentWillUnmount() {
+
   }
 
   render() {
@@ -71,6 +75,7 @@ export default class GestureValueInput extends Component {
         ]}
       >
         <TextInput
+          ref={(textinput) => { this.textinput = textinput }}
           style={[
             global.textDisplay4,
             styles.textInput,
@@ -81,7 +86,6 @@ export default class GestureValueInput extends Component {
             ? Math.floor(this.props.defaultValue) + ''
             : ''
           }
-          editable={false}
           keyboardType={"numeric"}
           autoCorrect={false}
           placeholder={"0"}
