@@ -93,7 +93,7 @@ export default class AddExpenditure extends Component {
               styles.buttonText,
             ]}
             onPress={() => {
-              this.props.navigator.push(Router.getRoute('pastExpenditure'))
+              this.props.navigator.push(Router.getRoute('pastExpenditure'));
             }}
           />
           <Button
@@ -123,6 +123,9 @@ export default class AddExpenditure extends Component {
           />
         </View>
         <ImageButton
+        onPress={()=>{
+          this.props.navigator.push(Router.getRoute('menu'));
+        }}
           style={[
             styles.button,
             styles.buttonMenu,
