@@ -47,8 +47,7 @@ export default class Home extends Component {
       <View
         style={styles.rootContainer}
       >
-         <StatusBar
-          translucent={true}
+        <StatusBar
           barStyle="light-content"
         />
         <NavigationProvider router={Router}>
@@ -66,8 +65,5 @@ const styles = EStyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: '$color.themeModerate',
     padding: '$dimen.contentMargin',
-  },
-  statusbar: {
-    color: '$color.themeDark',
   },
 });

@@ -54,18 +54,18 @@ export default class PastExpenditure extends Component {
     this.databaseHandler.getSpending(
       this.state.date.getFullYear(),
       this.state.date.getMonth()
-    ).then((spending) => {
+    ).then((result) => {
       // TODO
-      var budget = 500;
-      var budgetData = Array(spending.length);
+      var budget = result.budget;
+      var budgetData = Array(result.spending.length);
 
-      spending.map((entry, index) => {
+      result.spending.map((entry, index) => {
         budget -= entry;
         budgetData[index] = budget;
       });
 
       this.setState({
-        spending: spending,
+        spending: result.spending,
         budget: budgetData,
       });
     }).catch((error) => {

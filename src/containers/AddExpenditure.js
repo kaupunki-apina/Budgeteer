@@ -29,7 +29,9 @@ export default class AddExpenditure extends Component {
     super(props);
     this.state={
       inputValue: 0,
-    }
+      currency: '',
+    };
+
     this.databaseHandler = new DatabaseHandler();
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
@@ -44,6 +46,15 @@ export default class AddExpenditure extends Component {
     return newVal > 0
       ? newVal
       : 0;
+  }
+
+  componentWillMount() {
+    this.databaseHandler.getCurrency()
+      .then((currency)=> {
+        this.setState({
+          currency: currency,
+        });
+      });
   }
 
   render() {
@@ -66,12 +77,13 @@ export default class AddExpenditure extends Component {
           />
           <GestureValueInput
             style={styles.inputArea}
+            defaultValue={this.state.inputValue}
+            currency={this.state.currency}
             onInputChanged={(newInput)=> {
               this.setState({
                 inputValue: newInput,
               });
             }}
-            defaultValue={this.state.inputValue}
           />
           <ImageButton
             style={styles.button}
@@ -118,7 +130,7 @@ export default class AddExpenditure extends Component {
                 });
                 // TODO
                 // Localization
-                ToastAndroid.show('Saved', ToastAndroid.SHORT);
+                ToastAndroid.show('Added', ToastAndroid.SHORT);
             }}
           />
         </View>
@@ -170,7 +182,7 @@ const styles = EStyleSheet.create({
   },
   buttonMenu: {
     position: 'absolute',
-    top: '$dimen.contentMargin * 2',
+    top: '$dimen.contentMargin',
     right: '$dimen.contentMargin',
     backgroundColor: 'white',
   },

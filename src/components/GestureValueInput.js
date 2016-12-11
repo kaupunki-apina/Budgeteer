@@ -7,11 +7,13 @@ import {
   View,
   Text,
   TextInput,
+  AsyncStorage,
 } from 'react-native';
 
 import {createResponder} from 'react-native-gesture-responder';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+import config from '../config';
 import global from '../style';
 
 
@@ -72,10 +74,11 @@ export default class GestureValueInput extends Component {
           style={[
             global.textDisplay4,
             styles.textInput,
+            this.props.textStyle,
           ]}
           value={
             this.props.defaultValue != 0
-            ? Math.floor(this.props.defaultValue) + ""
+            ? Math.floor(this.props.defaultValue) + ''
             : ''
           }
           editable={false}
@@ -86,11 +89,16 @@ export default class GestureValueInput extends Component {
           clearTextOnFocus={false}
           multiline={false}
         />
-          €
+          {this.props.currencyLabel && this.props.currency}
         </Text>
       </View>
     );
   }
+}
+
+GestureValueInput.defaultProps = {
+  currencyLabel: true,
+  currency: '',
 }
 
 const styles = EStyleSheet.create({
