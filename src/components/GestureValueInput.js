@@ -30,7 +30,7 @@ export default class GestureValueInput extends Component {
       onMoveShouldSetResponderCapture: (evt, gestureState) => true,
       onResponderTerminationRequest: (evt, gestureState) => true,
       onResponderMove: (evt, gestureState) => {
-        const newVal = this.props.defaultValue + gestureState.dx * 0.1;
+        const newVal = this.props.defaultValue + gestureState.dx * 0.01;
         const isValid = newVal < 0
         if (this.props.onInputChanged) {
           this.props.onInputChanged(
