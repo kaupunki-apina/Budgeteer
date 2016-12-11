@@ -28,9 +28,7 @@ export default class BarChart extends Component {
   maxValueFromData(data) {
     var maxValue;
     data.map((value)=> {
-      console.log("value; " + value)
       if (maxValue === undefined || maxValue < value) {
-        console.log("setting: " + value);
         maxValue = value
       }
     })

@@ -84,10 +84,24 @@ export default class AddExpenditure extends Component {
           />
         </View>
         <View
-          style={styles.confirmButtonContainer}
+          style={styles.buttonsContainer}
         >
           <Button
+            label={"history"}
+            style={[
+              styles.button,
+              styles.buttonText,
+            ]}
+            onPress={() => {
+              this.props.navigator.push(Router.getRoute('pastExpenditure'))
+            }}
+          />
+          <Button
             label={"add"}
+            style={[
+              styles.button,
+              styles.buttonText,
+            ]}
             onPress={() => {
               const date = new Date();
               this.databaseHandler
@@ -107,14 +121,13 @@ export default class AddExpenditure extends Component {
                 ToastAndroid.show('Saved', ToastAndroid.SHORT);
             }}
           />
-
-          <Button
-            label={"history"}
-            onPress={() => {
-              this.props.navigator.push(Router.getRoute('pastExpenditure'))
-            }}
-          />
         </View>
+        <ImageButton
+          style={[
+            styles.button,
+            styles.buttonMenu,
+          ]}
+        />
       </View>
     );
   }
@@ -135,11 +148,28 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
   },
-  confirmButtonContainer: {
+  buttonsContainer: {
     marginVertical: '$dimen.contentMargin',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {
     zIndex: 10,
+    marginVertical: '$dimen.marginSmall',
+  },
+  buttonText: {
+    backgroundColor: '$color.themeNeutral',
+    flex: 0.5,
+    marginHorizontal: '$dimen.marginSmall',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonMenu: {
+    position: 'absolute',
+    top: '$dimen.contentMargin * 2',
+    right: '$dimen.contentMargin',
+    backgroundColor: 'white',
   },
   inputArea: {
     zIndex: 1,

@@ -23,7 +23,6 @@ export default class BarChartDataEntry extends Component {
   componentDidMount() {
     var percentage = this.props.value / this.props.maxValue;
     if (!percentage || percentage < 0.01) percentage = 0.01;
-    console.log(!percentage)
     Animated.spring(
       this.state.barWidth,
       {
@@ -44,7 +43,6 @@ export default class BarChartDataEntry extends Component {
   componentWillReceiveProps(nextProps) {
     var percentage = nextProps.value / nextProps.maxValue;
     if (!percentage) percentage = 0.01; // Quick fix for cases when percentage === NaN
-    console.log(!percentage)
     Animated.spring(
       this.state.barWidth,
       {

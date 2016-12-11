@@ -21,7 +21,10 @@ export default class Button extends Component {
   render() {
     return (
       <View
-        style={styles.rootContainer}
+        style={[
+          styles.rootContainer,
+          this.props.style,
+        ]}
       >
         <TouchableOpacity
           style={styles.touchTargetContainer}

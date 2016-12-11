@@ -23,6 +23,7 @@ export default class ImageButton extends Component {
   render() {
     return (
       <TouchableOpacity
+        style={this.props.style}
         onPress={() =>{
           if (this.props.enabled) {
             this.props.onPress();
@@ -39,7 +40,8 @@ export default class ImageButton extends Component {
               styles.icon,
               this.props.enabled
                 ? styles.enabled
-                : styles.disabled
+                : styles.disabled,
+              this.props.iconStyle,
             ]}
           />
         </View>
@@ -54,13 +56,13 @@ ImageButton.defaultProps = {
 
 const styles = EStyleSheet.create({
   iconContainer: {
-    width: 48,
-    height: 48,
+    width: '$dimen.touchableMin',
+    height: '$dimen.touchableMin',
   },
   icon: {
     flex: 1,
     alignSelf: 'stretch',
-  }
+  },
   enabled: {
     opacity: '$opacity.enabled',
     backgroundColor: 'black',

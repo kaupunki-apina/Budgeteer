@@ -48,7 +48,7 @@ export default class Home extends Component {
         style={styles.rootContainer}
       >
          <StatusBar
-          backgroundColor={styles._statusbar.color}
+          translucent={true}
           barStyle="light-content"
         />
         <NavigationProvider router={Router}>
