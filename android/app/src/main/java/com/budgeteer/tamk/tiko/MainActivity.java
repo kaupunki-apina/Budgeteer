@@ -1,4 +1,4 @@
-package com.budgeteer;
+package com.budgeteer.tamk.tiko;
 
 import com.facebook.react.ReactActivity;
 
